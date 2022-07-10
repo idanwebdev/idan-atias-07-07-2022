@@ -1,0 +1,33 @@
+.lottieCont {
+    position: absolute;
+    top: 7%;
+    max-width: 500px;
+    z-index: -1;
+}
+.lottieCont::before {
+    display: inline-block;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 90%;
+    z-index: 1;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 28%);
+}
+.lottieCont::after {
+    display: inline-block;
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 90%;
+    z-index: 1;
+    height: 100%;
+    background: linear-gradient(-90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 28%);
+}
+@media (orientation: portrait)  {
+    .lottieCont {
+        max-width: 80%;
+    } 
+}
