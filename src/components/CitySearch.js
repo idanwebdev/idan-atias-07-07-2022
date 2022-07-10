@@ -14,7 +14,7 @@ export default function CitySearch() {
   const {current, app} = useSelector(state => state)
 
   useEffect(() => {
-    //setting the default city
+    //setting the default city - tel-aviv
     if(Object.keys(current).length === 0 && options.length === 0) {
     setDefault()
     }
