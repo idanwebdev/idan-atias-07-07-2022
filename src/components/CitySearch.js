@@ -48,7 +48,7 @@ export default function CitySearch() {
 
   const getCities = async(query) => {
     //Grabing the input value while user search and requesting cities data
-    const baseUrl = "http://dataservice.accuweather.com/locations/v1/cities/autocomplete"
+    const baseUrl = "https://dataservice.accuweather.com/locations/v1/cities/autocomplete"
     if(!!query && query.length > 1) {
     let response = await axios(baseUrl + `?apikey=${process.env.REACT_APP_API_KEY}&q=${query}&language=en-us`)
       .then((result) => {
@@ -68,7 +68,7 @@ export default function CitySearch() {
     //get current weather data 
     if(city) {
     dispatch(viewedCity(city))
-    const baseUrl = "http://dataservice.accuweather.com/currentconditions/v1/"
+    const baseUrl = "https://dataservice.accuweather.com/currentconditions/v1/"
     axios(baseUrl + `${city.Key}?apikey=${process.env.REACT_APP_API_KEY}&language=en-us&details=false`)
     .then((result) => {
       dispatch(setCurrent(result.data))
@@ -85,7 +85,7 @@ export default function CitySearch() {
 
   const getFiveDays = (key) => {
     //geth 5 days weather forecast
-    const baseUrl = "http://dataservice.accuweather.com/forecasts/v1/daily/5day/"
+    const baseUrl = "https://dataservice.accuweather.com/forecasts/v1/daily/5day/"
     axios(baseUrl + `${key}?apikey=${process.env.REACT_APP_API_KEY}&language=en-us&details=false&metric=true`)
     .then((result) => {
       dispatch(setFiveDays(result.data))
