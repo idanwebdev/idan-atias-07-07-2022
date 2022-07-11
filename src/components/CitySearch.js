@@ -82,11 +82,16 @@ export default function CitySearch() {
     })
     }
   }
+  useEffect(() => {
+    if(app.city){
+    getFiveDays(app.city.Key)
+    }
+  }, [app.tempratureType])
 
   const getFiveDays = (key) => {
     //geth 5 days weather forecast
     const baseUrl = "https://dataservice.accuweather.com/forecasts/v1/daily/5day/"
-    axios(baseUrl + `${key}?apikey=${process.env.REACT_APP_API_KEY}&language=en-us&details=false&metric=true`)
+    axios(baseUrl + `${key}?apikey=${process.env.REACT_APP_API_KEY}&language=en-us&details=false&metric=${app.tempratureType === 'Metric' ? true : false}`)
     .then((result) => {
       dispatch(setFiveDays(result.data))
     })

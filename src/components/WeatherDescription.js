@@ -16,7 +16,7 @@ const {current, app} = useSelector((state => state))
             variant='h4'
             component='h4'
             >
-                It is {current.WeatherText.toLowerCase()} right now in {app.city.LocalizedName} | {current.Temperature.Metric.Value}<sup>C</sup>
+                It is {current.WeatherText.toLowerCase()} right now in {app.city.LocalizedName} | {current.Temperature[app.tempratureType].Value}<sup>{app.tempratureType === "Metric" ? "C" : "F"}</sup>
             </Typography>
         </Box>
     ) : (

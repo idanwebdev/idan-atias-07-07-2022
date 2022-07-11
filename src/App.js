@@ -1,28 +1,23 @@
 import React, { useState } from 'react';
 import './App.css'
 import AppBar from '@mui/material/AppBar'
-import { Button, Toolbar, Typography, Box, FormGroup, FormControlLabel, Snackbar, Alert } from '@mui/material'
+import { Button, Toolbar, Box, Snackbar, Alert } from '@mui/material'
 import Home from './pages/Home'
 import Favorites from './pages/Favorites'
 import { Container } from '@mui/system'
 import { summerTheme, winterTheme } from './helpers/customThemes'
 import { ThemeProvider } from '@mui/material/styles'
-import Switch from '@mui/material/Switch'
 import { useSelector } from 'react-redux'
+import Settings from './components/Settings';
 
 function App() {
   const [isHome, setIsHome] = useState(true)
-  const [checked, setChecked] = useState(true)
   const {app} = useSelector(state => state)
   const handleClick = () => {
     setIsHome(prevState => !prevState)
   }
-  function handleChange() {
-    setChecked(prevState => !prevState)
-  }
-
   return (
-  <ThemeProvider theme={checked ? winterTheme : summerTheme}>
+  <ThemeProvider theme={app.theme === 'winter' ? winterTheme : summerTheme}>
     <div className="App">
 
       <Snackbar open={!!app.error} autoHideDuration={5000}>
@@ -38,20 +33,8 @@ function App() {
 
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h5" component="div">
-            Weather
-          </Typography>
+          <img src="/favicon.ico" alt="logo"/>
           <Box sx={{marginLeft: 'auto', display:'flex'}}>
-            <FormGroup>
-              <FormControlLabel control={
-              <Switch 
-              checked={checked}
-              onChange={handleChange}
-              inputProps={{ 'aria-label': 'controlled' }} 
-              color="secondary" 
-              size='large'/>
-              } label={checked ? '❄️' : '☀️'}/>
-            </FormGroup>
             <Button 
             variant='contained'
             disabled={isHome}
@@ -66,6 +49,7 @@ function App() {
             disabled={!isHome}>
                 Favorites
             </Button>
+            <Settings />
           </Box>
         </Toolbar>
       </AppBar>

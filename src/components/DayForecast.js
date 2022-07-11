@@ -1,9 +1,11 @@
 import React from 'react'
 import { Card, Grid, Typography, Box, Avatar, Divider, CardHeader, CardContent } from '@mui/material'
 import WeekDay from './WeekDay'
+import { useSelector } from 'react-redux'
 
 
 export default function DayForecast({forecast}) {
+  const {tempratureType} = useSelector((state) => state.app)
   const padWithZero = (iconNumber) => {
     let stringIt = iconNumber.toString().padStart(2,'0')
     return stringIt
@@ -22,12 +24,12 @@ export default function DayForecast({forecast}) {
                     </Box>
                     <Divider sx={{margin: '10px'}}/>
                     <Typography variant='h4'>
-                        {forecast.Temperature.Maximum.Value} ~ {forecast.Temperature.Minimum.Value} 
+                        {forecast.Temperature.Maximum.Value}<sup style={{fontSize: "13px"}}>{tempratureType === "Metric" ? "C" : "F"}</sup> ~ {forecast.Temperature.Minimum.Value}<sup style={{fontSize: "13px"}}>{tempratureType === "Metric" ? "C" : "F"}</sup>
                     </Typography>
                     <Divider sx={{margin: '10px'}}/>
                     <Box sx={{display: 'flex', alignItems: 'center'}}>
                         <Avatar sx={{marginRight: '10px'}} alt="weather icon" src={`https://developer.accuweather.com/sites/default/files/${padWithZero(forecast.Night.Icon)}-s.png`} variant="square"/>
-                        <Typography variant='h6' component='p'>
+                        <Typography variant='h6' component='p' >
                             {forecast.Night.IconPhrase}
                         </Typography>
                     </Box>

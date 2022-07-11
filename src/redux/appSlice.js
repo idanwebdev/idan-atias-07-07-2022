@@ -17,9 +17,15 @@ export const appSlice = createSlice({
     },
     setLocalLottie: (state,action) => {
       state.lottie = action.payload
+    },
+    setTheme: (state, action) => {
+      state.theme = action.payload
+    },
+    setTemperatureType: (state, action) => {
+      state.tempratureType = action.payload
     }
   }
 });
 
-export const {setError, setSuccess, viewedCity, setLocalLottie} = appSlice.actions;
+export const {setTemperatureType,setTheme,setError, setSuccess, viewedCity, setLocalLottie} = appSlice.actions;
 export default appSlice.reducer;
