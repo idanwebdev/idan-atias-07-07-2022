@@ -16,7 +16,6 @@ export default function FavoritesContainer() {
       dispatch(setSuccess(""))
     }, 5000)
   }
-
   return (
     <>
     <Typography
@@ -44,7 +43,7 @@ export default function FavoritesContainer() {
                 variant='h5'
                 component='p'
                 >
-                  {item.Temperature[app.tempratureType].Value}<sup>c</sup>
+                  {item.Temperature[app.tempratureType].Value}<sup>{app.tempratureType === "Metric" ? "C" : "F"}</sup>
                 </Typography>
               </Box>
               </CardContent>
