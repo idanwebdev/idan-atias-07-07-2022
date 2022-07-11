@@ -6,7 +6,7 @@ import { remove } from '../redux/favoritesSlice'
 import { setSuccess } from '../redux/appSlice'
 
 export default function FavoritesContainer() {
-  const {favorites} = useSelector((state) => state)
+  const {favorites, app} = useSelector((state) => state)
   const dispatch = useDispatch()
 
   const handleDelete = (index) => {
@@ -44,7 +44,7 @@ export default function FavoritesContainer() {
                 variant='h5'
                 component='p'
                 >
-                  {item.Temperature.Metric.Value}<sup>c</sup>
+                  {item.Temperature[app.tempratureType].Value}<sup>c</sup>
                 </Typography>
               </Box>
               </CardContent>
